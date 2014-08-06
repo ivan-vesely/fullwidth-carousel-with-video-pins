@@ -1,7 +1,10 @@
 // Core variables and mixins
-@import "../bootstrap-less/normalize.less";
+@import "../bootstrap-less/variables.less";
 @import "../bootstrap-less/mixins.less";
+@import "../bootstrap-less/forms.less"; 
+@import "../bootstrap-less/normalize.less";
 @import "../bootstrap-less/utilities.less";
+@import "../bootstrap-less/navs.less";
 @import "../bootstrap-less/navbar.less";
  
 @import "_global.less";  
@@ -123,7 +126,7 @@ header p {
 
 /* Nav */
 
-nav {
+.big-carousel-nav {
     position: absolute;
     right: 5%;
     top: 45%;
@@ -133,10 +136,9 @@ nav {
     opacity: .4;
     cursor: pointer;
     z-index: 1000;
-}
-
-nav:hover {
-    opacity: .6;
+    &:hover {
+        opacity: .6;
+    }
 }
 
 .next-icon {
