@@ -211,3 +211,46 @@ header p {
 #big-video-control .ui-slider-handle{border-left:solid 1px #fff; width:16px;height:16px;position:absolute;top:-8px;}
 .transparent{-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";filter:alpha(opacity=0);-moz-opacity:0;-khtml-opacity:0;opacity:0;}
 .vjs-big-play-button{display:none !important;}
+
+.navbar.navbar-fixed-bottom {
+    background: #000;
+    .navbar-brand {
+        height: auto;
+        padding: 17px 0;
+    }
+    .container {
+        padding: 0 22px;
+    }
+    .navbar-collapse {
+        & > .nav {
+            padding: 22px 0;
+        }
+        & > .navbar-form {
+            margin: 31px 0;
+            i {
+                color: #fff;
+            }
+            input {
+                color: #fff;
+                background: transparent;
+                border: 0;
+                &:focus, &:active {
+                    outline: 0;
+                    .box-shadow(none);
+                }
+                font-size: 18px;
+                .placeholder(#fff);
+                padding: 0px 2px;
+                margin-top: -1px;
+                font-weight: normal;
+            }
+        }
+    }
+    .navbar-nav {
+        & >li {
+            & > a {
+                background: transparent;
+            }
+        }
+    }
+}

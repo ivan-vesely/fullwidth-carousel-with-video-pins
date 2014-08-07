@@ -1,4 +1,4 @@
-Welcome to the fullwidth-carousel-with-video-pins wiki!
+Welcome to the fullwidth-carousel-with-video-pins!
 
 You need to [node.js](http://nodejs.org/) installed on your machine to run the [grunt](http://gruntjs.com/).
 
