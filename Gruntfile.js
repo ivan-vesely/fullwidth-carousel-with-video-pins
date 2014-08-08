@@ -35,8 +35,8 @@ module.exports = function(grunt) {
         server: {
             options: {
                 port: 9001,
-                base: '/Users/knope/code/fullwidth-carousel-with-video-pins'
-
+                base: '/Workspace/spylight/frontend'
+            }
         }
     }
   });
