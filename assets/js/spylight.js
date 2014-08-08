@@ -1,3 +1,5 @@
+
+
 $(function() {
 
     // Use Modernizr to detect for touch devices, 
@@ -112,4 +114,15 @@ $(function() {
         });
 
     }
+
+    $(document).on('mouseenter', '.pin', function () {
+        $(this).addClass('active');
+        $(this).one('mouseleave', function () {
+            var me = this;
+            $(this).addClass('restore');
+            setTimeout(function () {
+                $(me).removeClass('active restore');
+            }, 501);
+        });
+    });
 });
