@@ -9,6 +9,15 @@
  
 @import "_global.less";  
 
+
+/*FONTS*/
+
+@font-face{
+    font-family: "Penna";
+    src: url('/assets/fonts/penna.otf'),
+    url('/assets/fonts/penna.otf'); /* IE */
+} 
+
 html,
 body {
     margin: 0;
@@ -16,10 +25,10 @@ body {
     color: #fff;
     background: #111;
     overflow: hidden;
-    font-family: 'Open Sans Condensed', Arial, sans-serif;
+    font-family: 'Penna', Arial, sans-serif;
     font-weight: 300;
-    font-size: 1em;
-}
+/*    font-size: 1em;
+*/}
 
 .wrapper {
     position: absolute;
@@ -44,6 +53,7 @@ p {
 
 a,
 a:visited {
+    letter-spacing: 2px;
     color: #fff;
     text-decoration: none;
 }
@@ -55,6 +65,7 @@ a:hover {
 h1 a,
 h1 a:hover,
 h1 a:visited {
+    font-size: 25px;
     text-decoration: none;
 }
 
@@ -214,6 +225,7 @@ header p {
 
 .navbar.navbar-fixed-bottom {
     background: #000;
+    font-size: 25px;
     .navbar-brand {
         height: auto;
         padding: 17px 0;
@@ -238,10 +250,11 @@ header p {
                     outline: 0;
                     .box-shadow(none);
                 }
-                font-size: 18px;
+                font-size: 25px;
+                letter-spacing: 2px;
                 .placeholder(#fff);
                 padding: 0px 2px;
-                margin-top: -1px;
+                margin-top: -15px;
                 font-weight: normal;
             }
         }
@@ -250,6 +263,7 @@ header p {
         & >li {
             & > a {
                 background: transparent;
+                margin-right: 10px;
             }
         }
     }
