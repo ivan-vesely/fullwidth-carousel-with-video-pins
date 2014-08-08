@@ -270,7 +270,7 @@
 				
 				player.addEvent('ended', function() {
 					if (doLoop) {
-						player.currentTime(0);
+						//player.currentTime(0);
 						player.play();
 					}
 					if (isQueued) {

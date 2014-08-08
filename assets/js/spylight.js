@@ -17,13 +17,24 @@ $(function() {
     
     if (!isTouch) {
         // initialize BigVideo
-        BV = new $.BigVideo({forceAutoplay:isTouch});
+        /*BV = new $.BigVideo({forceAutoplay:isTouch});
         BV.init();
         showVideo();
         
         BV.getPlayer().addEvent('loadeddata', function() {
             onVideoLoaded();
         });
+        BV.getPlayer().addEvent('ended', function() {
+            alert('ended');
+            BV.getPlayer().currentTime(5);
+        });
+        BV.getPlayer().addEvent('timeupdate', function() {
+            console.log('timeupdate');
+            if (BV.getPlayer().currentTime() >= 5) {
+                BV.getPlayer().stop();
+                //BV.getPlayer().currentTime(5);
+            }
+        });*/
 
         // adjust image positioning so it lines up with video
         $bigImage
@@ -42,7 +53,7 @@ $(function() {
     });
 
     function showVideo() {
-        $('#screen-'+screenIndex).attr('data-video') && BV.show($('#screen-'+screenIndex).attr('data-video'),{ambient:false});
+        //$('#screen-'+screenIndex).attr('data-video') && BV.show($('#screen-'+screenIndex).attr('data-video'),{ambient:false});
     }
 
     function next() {
@@ -76,7 +87,7 @@ $(function() {
         isTransitioning = false;
         if (!isTouch) {
             $('#big-video-wrap').css('left',0);
-            showVideo();
+            //showVideo();
         }
     }
 
@@ -117,12 +128,19 @@ $(function() {
 
     $(document).on('mouseenter', '.pin', function () {
         $(this).addClass('active');
+        $(this).stop().animate({width: 250, height: 250, left: "-=" + (250/2), top: "-=" + (250/2)}, 500);
         $(this).one('mouseleave', function () {
             var me = this;
-            $(this).addClass('restore');
-            setTimeout(function () {
-                $(me).removeClass('active restore');
-            }, 501);
+            $(this).stop().animate({width: 20, height: 20, left: "+=" + (250/2), top: "+=" + (250/2)}, 500, function () {
+                $(me).removeClass('active');
+            });
         });
     });
+    setTimeout( function () {
+        document.getElementById('big-video-vid_html5_api').play();
+    }, 800);
+    document.getElementById('big-video-vid_html5_api').addEventListener('ended', function () {
+        $("#screen-1 .pins-container").show('fast');
+    });
+    window.BV = BV;
 });
