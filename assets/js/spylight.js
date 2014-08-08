@@ -127,6 +127,9 @@ $(function() {
     }
 
     $(document).on('mouseenter', '.pin', function () {
+        if ($(this).is(":animated")) {
+            return;
+        }
         $(this).addClass('active');
         $(this).stop().animate({width: 250, height: 250, left: "-=" + (250/2), top: "-=" + (250/2)}, 500);
         $(this).one('mouseleave', function () {

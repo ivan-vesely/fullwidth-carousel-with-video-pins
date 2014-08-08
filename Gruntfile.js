@@ -36,6 +36,7 @@ module.exports = function(grunt) {
             options: {
                 port: 9001,
                 base: '/Users/knope/code/fullwidth-carousel-with-video-pins'
+            }
         }
     }
   });
