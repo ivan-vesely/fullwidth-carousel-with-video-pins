@@ -130,11 +130,15 @@ $(function() {
         if ($(this).is(":animated")) {
             return;
         }
+        var oldleft = $(this).css('left'),
+            oldtop = $(this).css('top'),
+            oldwidth = $(this).css('width'),
+            oldheight = $(this).css('height');
         $(this).addClass('active');
         $(this).stop().animate({width: 250, height: 250, left: "-=" + (250/2), top: "-=" + (250/2)}, 500);
         $(this).one('mouseleave', function () {
             var me = this;
-            $(this).stop().animate({width: 20, height: 20, left: "+=" + (250/2), top: "+=" + (250/2)}, 500, function () {
+            $(this).stop().animate({width: oldwidth, height: oldheight, left: oldleft, top: oldtop}, 500, function () {
                 $(me).removeClass('active');
             });
         });
