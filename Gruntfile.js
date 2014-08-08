@@ -35,7 +35,7 @@ module.exports = function(grunt) {
         server: {
             options: {
                 port: 9001,
-                base: '/Workspace/spylight/frontend'
+                base: '/Users/knope/code'
             }
         }
     }
