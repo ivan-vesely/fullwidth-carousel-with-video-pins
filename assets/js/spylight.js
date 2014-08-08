@@ -40,7 +40,7 @@ $(function() {
     });
 
     function showVideo() {
-        BV.show($('#screen-'+screenIndex).attr('data-video'),{ambient:true});
+        $('#screen-'+screenIndex).attr('data-video') && BV.show($('#screen-'+screenIndex).attr('data-video'),{ambient:false});
     }
 
     function next() {
