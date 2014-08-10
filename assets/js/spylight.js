@@ -1,5 +1,8 @@
-
-
+var pinsList = [
+        [{x: '32.44%', y: '53.22%', productImgSrc: 'assets/img/sweater.png'}, {x: '52.444%', y: '40%', productImgSrc: 'assets/img/sweater.png'}],
+        [{x: '78.44%', y: '66.25%', productImgSrc: 'assets/img/sweater.png'}, {x: '80.55%', y: '30.99%', productImgSrc: 'assets/img/sweater.png'}],
+        [{x: '19.22%', y: '34%', productImgSrc: 'assets/img/sweater.png'}, {x: '58.33%', y: '66.87%', productImgSrc: 'assets/img/sweater.png'}]
+];
 $(function() {
 
     // Use Modernizr to detect for touch devices, 
@@ -13,7 +16,8 @@ $(function() {
         videoPlayer,
         isTouch = Modernizr.touch,
         $bigImage = $('.big-image'),
-        $window = $(window);
+        $window = $(window),
+        $container = $('.wrapper');
     
     if (!isTouch) {
         // initialize BigVideo
@@ -28,13 +32,7 @@ $(function() {
             alert('ended');
             BV.getPlayer().currentTime(5);
         });
-        BV.getPlayer().addEvent('timeupdate', function() {
-            console.log('timeupdate');
-            if (BV.getPlayer().currentTime() >= 5) {
-                BV.getPlayer().stop();
-                //BV.getPlayer().currentTime(5);
-            }
-        });*/
+        */
 
         // adjust image positioning so it lines up with video
         $bigImage
@@ -42,6 +40,7 @@ $(function() {
             .imagesLoaded(adjustImagePositioning);
         // and on window resize
         $window.on('resize', adjustImagePositioning);
+        allocatePins(pinsList);
     }
     
     // Next button click goes to next div
@@ -54,6 +53,20 @@ $(function() {
 
     function showVideo() {
         //$('#screen-'+screenIndex).attr('data-video') && BV.show($('#screen-'+screenIndex).attr('data-video'),{ambient:false});
+    }
+
+    function allocatePins(pins) {
+        var screens = $container.find('.screen');
+        for (var idx = 0, len=screens.length; idx<len; idx++) {
+            var pinDoms = [];
+            $.each(pins[idx], function (index, pin) {
+                var style = ['left:',pin.x,';top:',pin.y].join('');
+                console.log(style);
+                pinDoms.push('<div id="pin-'+idx+'-'+index+'" class="pin" style='+style+'><img src="'+pin.productImgSrc+'"/></div>');
+            });
+            $(screens[idx]).prepend('<div class="overlay pins-container">'+pinDoms.join('')+'</div>');
+            $(screens[idx]).find('.pins-container').css('opacity',0);
+        }
     }
 
     function next() {
@@ -89,6 +102,8 @@ $(function() {
             $('#big-video-wrap').css('left',0);
             //showVideo();
         }
+        $('#screen-'+screenIndex).find('.pins-container').transit({'opacity':1}, 50);
+        $('.screen:not(#screen-'+screenIndex+')').find('.pins-container').css({'opacity':0});
     }
 
     function adjustImagePositioning() {
@@ -135,10 +150,10 @@ $(function() {
             oldwidth = $(this).css('width'),
             oldheight = $(this).css('height');
         $(this).addClass('active');
-        $(this).stop().animate({width: 250, height: 250, left: "-=" + (250/2), top: "-=" + (250/2)}, 500, 'easeInOutSine');
+        $(this).stop().animate({width: 250, height: 250, left: "-=" + (250/2), top: "-=" + (250/2)}, 300);
         $(this).one('mouseleave', function () {
             var me = this;
-            $(this).stop().animate({width: oldwidth, height: oldheight, left: oldleft, top: oldtop}, 500, 'easeInOutSine', function () {
+            $(this).stop().animate({width: oldwidth, height: oldheight, left: oldleft, top: oldtop}, 300, function () {
                 $(me).removeClass('active');
             });
         });
@@ -147,7 +162,7 @@ $(function() {
         document.getElementById('big-video-vid_html5_api').play();
     }, 500);
     document.getElementById('big-video-vid_html5_api').addEventListener('ended', function () {
-        $("#screen-1 .pins-container").show('fast');
+        $('#screen-1 .pins-container').transit({'opacity':1},50);
     });
     window.BV = BV;
 });
