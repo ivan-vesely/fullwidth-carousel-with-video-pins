@@ -135,17 +135,17 @@ $(function() {
             oldwidth = $(this).css('width'),
             oldheight = $(this).css('height');
         $(this).addClass('active');
-        $(this).stop().animate({width: 250, height: 250, left: "-=" + (250/2), top: "-=" + (250/2)}, 500);
+        $(this).stop().animate({width: 250, height: 250, left: "-=" + (250/2), top: "-=" + (250/2)}, 500, 'easeInOutSine');
         $(this).one('mouseleave', function () {
             var me = this;
-            $(this).stop().animate({width: oldwidth, height: oldheight, left: oldleft, top: oldtop}, 500, function () {
+            $(this).stop().animate({width: oldwidth, height: oldheight, left: oldleft, top: oldtop}, 500, 'easeInOutSine', function () {
                 $(me).removeClass('active');
             });
         });
     });
     setTimeout( function () {
         document.getElementById('big-video-vid_html5_api').play();
-    }, 800);
+    }, 500);
     document.getElementById('big-video-vid_html5_api').addEventListener('ended', function () {
         $("#screen-1 .pins-container").show('fast');
     });
